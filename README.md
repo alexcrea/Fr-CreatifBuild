@@ -1,3 +1,3 @@
 # Fr-CreatifBuild
-Plugins (FR) ,
+Plugins Minecraft(FR) ,
 pas d'indication encor sur le plugin
