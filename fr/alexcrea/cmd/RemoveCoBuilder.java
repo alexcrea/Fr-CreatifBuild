@@ -11,7 +11,7 @@ import fr.alexcrea.CreatifBuild.Chunk;
 import fr.alexcrea.CreatifBuild.Main;
 import fr.alexcrea.CreatifBuild.OfflinePlayer;
 
-public class AddCoBuilder implements CommandExecutor {
+public class RemoveCoBuilder implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
@@ -23,11 +23,10 @@ public class AddCoBuilder implements CommandExecutor {
 				p.sendMessage("§cMerci de Séléctioné un joueur");
 			}else {
 				UUID pu2 = OfflinePlayer.GetPlayerUUID(args[0]);
-				if(pu2.equals(p.getUniqueId())) {p.sendMessage("§cvous ne pouvait pas vous rendre CoBuilder Sur votre propre Chunck");}
 				Chunk chunk = Main.getChunk(X+";"+Z);
 				if(!Main.GetPlayer(p.getUniqueId()).getListChunk().contains(chunk)) {p.sendMessage("§4çe chunk ne vous appartien pas");return false;}
-				else if(chunk.getCop().contains(pu2)) {p.sendMessage("§e"+args[0]+" §cest déja un cobuilder de çe chunk");return false;}
-				else {chunk.AddCoP(pu2);p.sendMessage("§e"+args[0]+" §aest Bien m'intenant un CoBuilder de çe chunk");}
+				else if(!chunk.getCop().contains(pu2)) {p.sendMessage("§e"+args[0]+" §cn'est pas un CoBuilder de çe chunk");return false;}
+				else {chunk.RemoveCoP(pu2);p.sendMessage("§e"+args[0]+" §an'est plus un CoBuilder de çe chunk");}
 			}
 		}
 		return false;
